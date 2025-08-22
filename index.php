@@ -6,12 +6,27 @@
 	<meta charset="utf-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
-<?php $tweet1 = [
-	"name"=>"Меланхоличка",
-	"text"=>"Самая страшная и мистическая история произошла со мной в квартире когда я спала и сама по себе косметичка упала на пол. Хотя она стояла на поддоконике далеко от края. Форточка была закрыта.",
-	"avatar"=>"img/2.png",
-	"image"=>"img/image.jpg",
-]     
+<?php 
+$con = mysqli_connect("127.0.0.1", "root", "", "twitter");
+if (!$con) {
+    $error = mysqli_connect_error();
+    echo "<script>console.error('Connection failed: ". addslashes($error) ."');</script>";
+    die();
+} else {
+    echo "<script>console.log('Connected successfully');</script>";
+}
+$select = "SELECT * FROM `tweets`";
+$results = mysqli_query($con, $select);
+
+$tweet1 = mysqli_fetch_assoc($results);
+$tweet2 = mysqli_fetch_assoc($results);
+$tweet3 = mysqli_fetch_assoc($results);
+
+
+
+
+
+    
 ?>
 <body class="">												
 	<div class="main mt-3">
@@ -94,6 +109,33 @@
 								<img src="<?php echo $tweet1['image']?>" class="rounded-circle w-75" alt="">
 							</div>
 						</div>
+
+						<div class="row mt-2 border-top border-bottom py-3">
+							<div class="col-2">
+								<img src="<?php echo $tweet2['avatar']?>" class="rounded-circle w-75" alt="">
+						</div>
+							<div class="col-10">
+								<h6><?php echo $tweet2['name']?></h6>
+
+								<p><?php echo $tweet2['text']?></p>
+								<img src="<?php echo $tweet2['image']?>" class="rounded-circle w-75" alt="">
+							</div>
+						</div>
+
+						<div class="row mt-2 border-top border-bottom py-3">
+							<div class="col-2">
+								<img src="<?php echo $tweet3['avatar']?>" class="rounded-circle w-75" alt="">
+						</div>
+							<div class="col-10">
+								<h6><?php echo $tweet3['name']?></h6>
+
+								<p><?php echo $tweet3['text']?></p>
+								<img src="<?php echo $tweet3['image']?>" class="rounded-circle w-75" alt="">
+							</div>
+						</div>
+
+
+
 					</div>
 					
 				</div>
