@@ -22,6 +22,17 @@ $tweet1 = mysqli_fetch_assoc($results);
 $tweet2 = mysqli_fetch_assoc($results);
 $tweet3 = mysqli_fetch_assoc($results);
 
+$select_trends = "SELECT * FROM `trends`";
+$results_trends = mysqli_query($con, $select_trends);
+
+$trends1 = mysqli_fetch_assoc($results_trends);
+$trends2 = mysqli_fetch_assoc($results_trends);
+$trends3 = mysqli_fetch_assoc($results_trends);
+$trends4 = mysqli_fetch_assoc($results_trends);
+
+$insert = "INSERT INTO tweets (name, text, avatar, image) VALUES ('{$_GET['name']}', '{$_GET['text']}', 'img/2.png', 'img/image.jpg')";
+$result_insert = mysqli_query($con, $insert);
+
 
 
 
@@ -68,11 +79,11 @@ $tweet3 = mysqli_fetch_assoc($results);
 						<div class="row">							
 							<div class="col-1">
 								
-								<img name="img" src="img/1.jpg" class="rounded-circle">
+								<img name="img" src="img/1.png" class="rounded-circle">
 							</div>							
 							<div class="col-10">
 								<div class="col-12">
-									<form action="index.php" method="GET">
+									<form action="insert.php" method="GET">
 
 									<input name="name" type="text" class="form-control" placeholder="Автор">
 									<textarea name="text" class="form-control mt-2" placeholder="Что нового?"></textarea>
@@ -141,8 +152,18 @@ $tweet3 = mysqli_fetch_assoc($results);
 				</div>
 
 				<!--Правая колонка-->
-				<div class="col-3">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda magnam ut quos veritatis laborum beatae earum. Facere atque voluptatum ad repudiandae nesciunt! Temporibus inventore repudiandae facilis nulla, cum omnis voluptate.
+				<div class="col-3 d-block">
+					<div class="col-3" style="background: rgb(210, 210, 210); height: 20%; width: 100%;">
+						<div class="col"><h4>Актуальные темы для вас</h4></div>
+						<div class="col fw-bold" style="height: 2rem;"><p style="font-size: 120%;"><?php echo $trends1['title'] ?></p></div>
+						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends1['number'] ?></p></div>
+						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends2['title'] ?></div>
+						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends2['number'] ?></p></div>
+						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends3['title'] ?></div>
+						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends3['number'] ?></p></div>
+						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends4['title'] ?></div>
+						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends4['number'] ?></p></div>
+					</div>
 				</div>
 			</div>
 		</div>
