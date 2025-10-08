@@ -18,22 +18,10 @@ if (!$con) {
 $select = "SELECT * FROM `tweets`";
 $results = mysqli_query($con, $select);
 
-$tweet1 = mysqli_fetch_assoc($results);
-$tweet2 = mysqli_fetch_assoc($results);
-$tweet3 = mysqli_fetch_assoc($results);
+
 
 $select_trends = "SELECT * FROM `trends`";
 $results_trends = mysqli_query($con, $select_trends);
-
-$trends1 = mysqli_fetch_assoc($results_trends);
-$trends2 = mysqli_fetch_assoc($results_trends);
-$trends3 = mysqli_fetch_assoc($results_trends);
-$trends4 = mysqli_fetch_assoc($results_trends);
-
-$insert = "INSERT INTO tweets (name, text, avatar, image) VALUES ('{$_GET['name']}', '{$_GET['text']}', 'img/2.png', 'img/image.jpg')";
-$result_insert = mysqli_query($con, $insert);
-
-
 
 
 
@@ -99,6 +87,7 @@ $result_insert = mysqli_query($con, $insert);
 					<!--Вывод постов тут-->
 					<div class="pt-2 bg-while">
 
+
 					   <div class="row mt-2 border-top border-bottom py-3">
 							<div class="col-2">
 								<img src="img/1.jpg" class="rounded-circle w-75" alt="">
@@ -109,41 +98,30 @@ $result_insert = mysqli_query($con, $insert);
 							</div>
 						</div>
 
-						<div class="row mt-2 border-top border-bottom py-3">
-							<div class="col-2">
-								<img src="<?php echo $tweet1['avatar']?>" class="rounded-circle w-75" alt="">
-						</div>
-							<div class="col-10">
-								<h6><?php echo $tweet1['name']?></h6>
+						<?php
 
-								<p><?php echo $tweet1['text']?></p>
-								<img src="<?php echo $tweet1['image']?>" class="rounded-circle w-75" alt="">
-							</div>
-						</div>
+              for ($i=0; $i < mysqli_num_rows($results) ; $i++){
+	$tweet = mysqli_fetch_assoc($results);
+
+?>
 
 						<div class="row mt-2 border-top border-bottom py-3">
 							<div class="col-2">
-								<img src="<?php echo $tweet2['avatar']?>" class="rounded-circle w-75" alt="">
+								<img src="<?php echo $tweet['avatar']?>" class="rounded-circle w-75" alt="">
 						</div>
 							<div class="col-10">
-								<h6><?php echo $tweet2['name']?></h6>
+								<h6><?php echo $tweet['name']?></h6>
 
-								<p><?php echo $tweet2['text']?></p>
-								<img src="<?php echo $tweet2['image']?>" class="rounded-circle w-75" alt="">
+								<p><?php echo $tweet['text']?></p>
+								<img src="<?php echo $tweet['image']?>" class="rounded-circle w-75" alt="">
 							</div>
 						</div>
 
-						<div class="row mt-2 border-top border-bottom py-3">
-							<div class="col-2">
-								<img src="<?php echo $tweet3['avatar']?>" class="rounded-circle w-75" alt="">
-						</div>
-							<div class="col-10">
-								<h6><?php echo $tweet3['name']?></h6>
+						<?php
+						}
+						?>
 
-								<p><?php echo $tweet3['text']?></p>
-								<img src="<?php echo $tweet3['image']?>" class="rounded-circle w-75" alt="">
-							</div>
-						</div>
+						
 
 
 
@@ -152,17 +130,43 @@ $result_insert = mysqli_query($con, $insert);
 				</div>
 
 				<!--Правая колонка-->
-				<div class="col-3 d-block">
-					<div class="col-3" style="background: rgb(210, 210, 210); height: 20%; width: 100%;">
-						<div class="col"><h4>Актуальные темы для вас</h4></div>
-						<div class="col fw-bold" style="height: 2rem;"><p style="font-size: 120%;"><?php echo $trends1['title'] ?></p></div>
+				<div class="col-3 d-flex">
+					<div class="col-3" style="background: rgb(210, 210, 210); width: 100%; height: 10rem;">
+
+					<div class="col d-flex">
+					<form action="insert1.php" method="GET">
+						
+
+						<div class="col" style="height: 3rem;">
+							<input name="title" type="text" class="form-control" placeholder="Название" style="border: 1px solid gray; width: 18rem;">
+						</div>
+						<div class="col">
+							<input name="number" type="number" class="form-control" placeholder="Количество" style="border: 1px solid gray;">
+						</div>
+
+						<div class="col">
+							<button type="submit" class="btn btn-primary mt-2" style="border-radius: 50px;">Добавить</button>
+						</div>
+
+                    </form>
+					</div>
+
+<?php
+
+              for ($i=0; $i < mysqli_num_rows($results_trends) ; $i++){
+	$trends1 = mysqli_fetch_assoc($results_trends);
+
+?>
+                        <div style="background: rgb(210, 210, 210);">
+                        <div class="col fw-bold" style="height: 2rem;"><?php echo  $trends1['title'] ?></div>
 						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends1['number'] ?></p></div>
-						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends2['title'] ?></div>
-						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends2['number'] ?></p></div>
-						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends3['title'] ?></div>
-						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends3['number'] ?></p></div>
-						<div class="col fw-bold" style="height: 2rem;"><?php echo $trends4['title'] ?></div>
-						<div class="col" style="height: 2rem;"><p>Твитов: <?php echo $trends4['number'] ?></p></div>
+						</div>
+						
+
+						<?php
+			  }
+						?>
+
 					</div>
 				</div>
 			</div>
