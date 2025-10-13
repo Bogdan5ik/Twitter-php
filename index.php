@@ -14,7 +14,7 @@ if (!$con) {
     die();
 } else {
     echo "<script>console.log('Connected successfully');</script>";
-}
+}	
 $select = "SELECT * FROM `tweets`";
 $results = mysqli_query($con, $select);
 
@@ -80,12 +80,26 @@ $results_trends = mysqli_query($con, $select_trends);
 									</form>
 								</div>								
 							</div>
-						</div>				
+						</div>
+						
+						
 							
 					</div>
 
+					
+
 					<!--Вывод постов тут-->
 					<div class="pt-2 bg-while">
+
+						<form action="insert2.php" method="GET">
+						<div class="col">
+							<input name="id" type="number" class="form-control" placeholder="введите id твита" style="border: 1px solid gray;">
+						</div>
+
+						<div class="col">
+							<button type="submit" class="btn btn-danger mt-2">Удалить</button>
+						</div>
+						</form>
 
 
 					   <div class="row mt-2 border-top border-bottom py-3">
