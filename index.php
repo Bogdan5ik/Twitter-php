@@ -91,15 +91,13 @@ $results_trends = mysqli_query($con, $select_trends);
 					<!--Вывод постов тут-->
 					<div class="pt-2 bg-while">
 
-						<form action="insert2.php" method="GET">
-						<div class="col">
-							<input name="id" type="number" class="form-control" placeholder="введите id твита" style="border: 1px solid gray;">
-						</div>
+					<form action="update.php" method="GET" class="text-center">
+							<input class="form-control mt-2" type="number" placeholder="id твита" name="id">
+							<input class="form-control mt-2" type="text" placeholder="Имя" name="name">
+							<input class="form-control mt-2" type="text" placeholder="Текст" name="text">
+							<button class="btn btn-success mt-2">Редактировать</button>
+					</form>
 
-						<div class="col">
-							<button type="submit" class="btn btn-danger mt-2">Удалить</button>
-						</div>
-						</form>
 
 
 					   <div class="row mt-2 border-top border-bottom py-3">
@@ -128,6 +126,12 @@ $results_trends = mysqli_query($con, $select_trends);
 
 								<p><?php echo $tweet['text']?></p>
 								<img src="<?php echo $tweet['image']?>" class="rounded-circle w-75" alt="">
+								<form action="insert2.php" method="GET">
+						<div class="col">
+							<input style="display: none;" type="number" name="id" value="<?php echo $tweet['id']; ?>">
+							<button type="submit" class="btn btn-danger mt-2">Удалить</button>
+						</div>
+						</form>
 							</div>
 						</div>
 
