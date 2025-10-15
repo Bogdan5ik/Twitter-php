@@ -99,17 +99,6 @@ $results_trends = mysqli_query($con, $select_trends);
 					</form>
 
 
-
-					   <div class="row mt-2 border-top border-bottom py-3">
-							<div class="col-2">
-								<img src="img/1.jpg" class="rounded-circle w-75" alt="">
-						</div>
-							<div class="col-10">
-								<h6><?php echo $_GET['name']?></h6>
-								<p><?php echo $_GET['text']?></p>
-							</div>
-						</div>
-
 						<?php
 
               for ($i=0; $i < mysqli_num_rows($results) ; $i++){
