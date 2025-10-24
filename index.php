@@ -90,15 +90,6 @@ $results_trends = mysqli_query($con, $select_trends);
 
 					<!--Вывод постов тут-->
 					<div class="pt-2 bg-while">
-
-					<form action="update.php" method="GET" class="text-center">
-							<input class="form-control mt-2" type="number" placeholder="id твита" name="id">
-							<input class="form-control mt-2" type="text" placeholder="Имя" name="name">
-							<input class="form-control mt-2" type="text" placeholder="Текст" name="text">
-							<button class="btn btn-success mt-2">Редактировать</button>
-					</form>
-
-
 						<?php
 
               for ($i=0; $i < mysqli_num_rows($results) ; $i++){
@@ -115,12 +106,24 @@ $results_trends = mysqli_query($con, $select_trends);
 
 								<p><?php echo $tweet['text']?></p>
 								<img src="<?php echo $tweet['image']?>" class="rounded-circle w-75" alt="">
-								<form action="insert2.php" method="GET">
+								
 						<div class="col">
+							<form action="insert2.php" method="GET">
+
 							<input style="display: none;" type="number" name="id" value="<?php echo $tweet['id']; ?>">
 							<button type="submit" class="btn btn-danger mt-2">Удалить</button>
+
+							</form>
 						</div>
-						</form>
+
+						
+						<form action="update.php" method="GET" class="text-center updateForm" style="display: none;">
+							<input class="form-control mt-2" type="number" placeholder="id твита" name="id" value="<?php echo $tweet['id']; ?>">
+							<input class="form-control mt-2" type="text" placeholder="Имя" name="name" value="<?php echo $tweet['name']; ?>">
+							<input class="form-control mt-2" type="text" placeholder="Текст" name="text" value="<?php echo $tweet['text']; ?>">
+							<button class="btn btn-success mt-2">Сохранить</button>
+					    </form>
+						<button class="btn btn-warning mt-3 updateBtn">Редактировать</button>
 							</div>
 						</div>
 
@@ -181,3 +184,4 @@ $results_trends = mysqli_query($con, $select_trends);
 	</div>
 </body>
 </html>
+<script src="script.js"></script>
