@@ -118,7 +118,7 @@ $results_trends = mysqli_query($con, $select_trends);
 
 						
 						<form action="update.php" method="GET" class="text-center updateForm" style="display: none;">
-							<input class="form-control mt-2" type="number" placeholder="id твита" name="id" value="<?php echo $tweet['id']; ?>">
+							<input style="display: none;" class="form-control mt-2" type="number" placeholder="id твита" name="id" value="<?php echo $tweet['id']; ?>">
 							<input class="form-control mt-2" type="text" placeholder="Имя" name="name" value="<?php echo $tweet['name']; ?>">
 							<input class="form-control mt-2" type="text" placeholder="Текст" name="text" value="<?php echo $tweet['text']; ?>">
 							<button class="btn btn-success mt-2">Сохранить</button>
@@ -184,4 +184,5 @@ $results_trends = mysqli_query($con, $select_trends);
 	</div>
 </body>
 </html>
+
 <script src="script.js"></script>
